@@ -2,31 +2,34 @@ package com.chethiya.position.controllers;
 
 import com.chethiya.position.services.CommonService;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-public abstract class CommonController<DTO, ID> {
+public abstract class CommonController<T, S> {
 
     @ResponseBody
-    @RequestMapping(path = "/put", method = RequestMethod.PUT, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public DTO add(@RequestBody DTO dto) {
+    @PutMapping(path = "/put", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces =
+            {MediaType.APPLICATION_JSON_VALUE})
+    public T add(@RequestBody T dto) {
         return getService().saveEntity(dto);
     }
 
     @ResponseBody
-    @RequestMapping(path = "/get/{code}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public DTO get(@PathVariable(name = "code") ID id) {
+    @GetMapping(path = "/get/{code}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public T get(@PathVariable(name = "code") S id) {
         return getService().getEntity(id);
     }
 
     @ResponseBody
-    @RequestMapping(path = "/post", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public DTO update(@RequestBody DTO dto) {
+    @PostMapping(path = "/post", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces =
+            {MediaType.APPLICATION_JSON_VALUE})
+    public T update(@RequestBody T dto) {
         return getService().updateEntity(dto);
     }
 
-    abstract CommonService<DTO, ID> getService();
+    abstract CommonService<T, S> getService();
 }

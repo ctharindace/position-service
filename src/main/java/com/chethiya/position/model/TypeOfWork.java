@@ -2,6 +2,7 @@ package com.chethiya.position.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,11 +29,11 @@ public class TypeOfWork {
     @Column(name="WORK_TYPE_NAME")
     private String workTypeName;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "FIELD_ID")
     private FieldOfWork fieldOfWork;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "GRADE_ID")
     private WorkGrade workGrade;
 

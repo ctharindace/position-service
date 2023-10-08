@@ -1,6 +1,7 @@
 package com.chethiya.position.services.impl;
 
 import com.chethiya.position.dao.repositories.PositionRepository;
+import com.chethiya.position.dao.repositories.TypeOfWorkRepository;
 import com.chethiya.position.dto.PositionDTO;
 import com.chethiya.position.model.Position;
 import com.chethiya.position.services.PositionService;
@@ -12,6 +13,9 @@ public class PositionServiceImpl implements PositionService {
 
     @Autowired
     private PositionRepository positionRepository;
+
+    @Autowired
+    private TypeOfWorkRepository typeOfWorkRepository;
 
     @Override
     public PositionDTO saveEntity(PositionDTO positionDTO) {
@@ -36,7 +40,7 @@ public class PositionServiceImpl implements PositionService {
         positionDTO.setPositionName(position.getPositionName());
         positionDTO.setReferenceId(position.getReferenceId());
         positionDTO.setMonthlySalary(position.getMonthlySalary());
-        positionDTO.setTypeOfWork(position.getTypeOfWork());
+        positionDTO.setTypeOfWorkCode(position.getTypeOfWork().getWorkTypeCode());
         positionDTO.setStartDate(position.getStartDate());
         positionDTO.setEndDate(position.getEndDate());
         return positionDTO;
@@ -46,7 +50,7 @@ public class PositionServiceImpl implements PositionService {
         position.setPositionName(positionDTO.getPositionName());
         position.setReferenceId(positionDTO.getReferenceId());
         position.setMonthlySalary(positionDTO.getMonthlySalary());
-        position.setTypeOfWork(positionDTO.getTypeOfWork());
+        position.setTypeOfWork(typeOfWorkRepository.findByWorkTypeCode(positionDTO.getTypeOfWorkCode()));
         position.setStartDate(positionDTO.getStartDate());
         position.setEndDate(positionDTO.getEndDate());
         return position;

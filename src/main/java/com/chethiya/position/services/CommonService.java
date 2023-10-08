@@ -1,11 +1,11 @@
 package com.chethiya.position.services;
 
-public interface CommonService<DTO, ID> {
+public interface CommonService<T, S> {
 
-    DTO saveEntity(DTO dto);
+    T saveEntity(T dto);
 
-    DTO getEntity(ID id);
+    T getEntity(S id);
 
-    DTO updateEntity(DTO dto);
+    T updateEntity(T dto);
 
 }
