@@ -41,6 +41,7 @@ public class PositionServiceImpl implements PositionService {
         positionDTO.setReferenceId(position.getReferenceId());
         positionDTO.setMonthlySalary(position.getMonthlySalary());
         positionDTO.setTypeOfWorkCode(position.getTypeOfWork().getWorkTypeCode());
+        positionDTO.setTypeOfWorkName(position.getTypeOfWork().getWorkTypeName());
         positionDTO.setStartDate(position.getStartDate());
         positionDTO.setEndDate(position.getEndDate());
         return positionDTO;

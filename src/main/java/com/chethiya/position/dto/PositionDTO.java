@@ -12,9 +12,11 @@ public class PositionDTO {
 
     private String positionName;
 
+    private BigDecimal monthlySalary;
+
     private String typeOfWorkCode;
 
-    private BigDecimal monthlySalary;
+    private String typeOfWorkName;
 
     private Date startDate;
 
